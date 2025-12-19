@@ -33,7 +33,7 @@ copilotfeedback
 
 ### Keyboard Controls
 
-- **↑/↓ Arrow Keys**: Navigate through diff lines
+- **↑/↓ Arrow Keys** or **Tab/Shift+Tab**: Navigate through diff lines
 - **Page Up/Down**: Quick navigation through large diffs
 - **c**: Create new comment on current line
 - **e**: Edit existing comment on current line

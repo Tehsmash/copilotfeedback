@@ -118,13 +118,20 @@ class DiffReviewApp(App[None]):
         Binding("e", "edit_comment", "Edit comment"),
         Binding("d", "delete_comment", "Delete comment"),
         Binding("q", "quit_app", "Quit and save"),
-        Binding("escape", "cancel_edit", "Cancel edit"),
-        Binding("up", "focus_previous", "Move up", show=False),
-        Binding("down", "focus_next", "Move down", show=False),
+        Binding("escape", "cancel_edit", "Cancel edit", show=False),
+        Binding("up", "focus_previous", "↑ Move up", show=False),
+        Binding("down", "focus_next", "↓ Move down", show=False),
+        Binding("tab", "focus_next", show=False, priority=True),
+        Binding("shift+tab", "focus_previous", show=False, priority=True),
     ]
+
+    # Disable screenshot command
+    ENABLE_COMMAND_PALETTE = False
 
     def __init__(self, diff: Diff) -> None:
         super().__init__()
+        self.title = "Copilot Feedback"
+        self.sub_title = "Navigate: ↑/↓/Tab/Shift+Tab  |  Comment: c  |  Quit: q"
         self.diff = diff
         self.current_line_idx = 0
         self.editing = False
@@ -140,7 +147,7 @@ class DiffReviewApp(App[None]):
 
     def compose(self) -> ComposeResult:
         """Compose the app layout."""
-        yield Header()
+        yield Header(show_clock=False)
         yield VerticalScroll(id="diff-container")
         yield Footer()
 
